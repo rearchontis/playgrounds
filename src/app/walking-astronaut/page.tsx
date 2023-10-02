@@ -10,8 +10,9 @@ import {
   Bloom,
   TiltShift2,
 } from "@react-three/postprocessing";
-
+// @ts-ignore
 import { Astronaut } from "@/app/walking-astronaut/Astronaut.tsx";
+// @ts-ignore
 import { Ground } from "@/app/walking-astronaut/Ground.tsx"
 import styles from '@/app/walking-astronaut/styles.module.css'
 
@@ -22,7 +23,9 @@ function Rings() {
     for (let i = 0; i < itemsRef.current.length; i++) {
       let mesh = itemsRef.current[i];
 
+      // @ts-ignore
       mesh.rotation.x = state.clock.elapsedTime + 2*Math.PI*i/itemsRef.current.length;
+      // @ts-ignore
       mesh.rotation.y = state.clock.elapsedTime*0.4 + 2*Math.PI*i/itemsRef.current.length;
     }
   });
@@ -36,6 +39,7 @@ function Rings() {
           position={[0, 0, 0]}
           rotation = {[0,i/5,0]}
           key={i}
+          // @ts-ignore
           ref={(el) => (itemsRef.current[i] = el)}
         >
           <torusGeometry args={[3.35 + i / 10, 0.05, 16, 100]} />

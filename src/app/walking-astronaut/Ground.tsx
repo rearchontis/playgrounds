@@ -35,6 +35,7 @@ export const Ground = memo(function Ground () {
       <MeshReflectorMaterial
         envMapIntensity={0}
         normalMap={normal}
+        // @ts-ignore
         normalScale={[0.15, 0.15]}
         roughnessMap={roughness}
         dithering={true}

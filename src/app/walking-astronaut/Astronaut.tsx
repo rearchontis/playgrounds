@@ -11,14 +11,17 @@ import { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { Mesh } from "three";
 
-export function Astronaut(props) {
+export function Astronaut(props: any) {
   const group = useRef()
+  // @ts-ignore
   const { nodes, materials, animations } = useGLTF('/walking_astronaut.glb')
   const { actions } = useAnimations(animations, group)
 
   useEffect(() => {
+    // @ts-ignore
     actions.moon_walk.play();
 
+    // @ts-ignore
     group.current.traverse((object) => {
         if (object instanceof Mesh) {
           object.castShadow = true;
