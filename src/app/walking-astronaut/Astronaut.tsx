@@ -64,4 +64,4 @@ export function Astronaut(props: any) {
   )
 }
 
-useGLTF.preload('/astronaut_animation_walking.glb')
+useGLTF.preload('/walking_astronaut.glb')
