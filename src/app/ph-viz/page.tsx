@@ -28,7 +28,7 @@ function onReady(value: number) {
     particleColor: 'rgba(73, 156, 198, 1)',
     particleRadius: 1,
     particleCount: 10 ** (14 - value),
-    particleMaxVelocity: 1,
+    particleMaxVelocity: (14 - value) / 1.5,
   };
 
   class Particle implements IParticle {
@@ -73,11 +73,13 @@ function onReady(value: number) {
     context!.fillRect(0, 0, width, height);
   }
 
+  let animationFrameId: number;
+
   function loop() {
     redrawBackground();
     redrawParticles();
 
-    requestAnimationFrame(loop);
+    animationFrameId = requestAnimationFrame(loop);
   }
 
   function init() {
@@ -94,13 +96,20 @@ function onReady(value: number) {
   }
 
   init();
+
+  return () => {
+    cancelAnimationFrame(animationFrameId);
+    context.clearRect(0, 0, width, height);
+  }
 }
 
 export default function PHViz() {
   const [value, setValue] = useState(11.5);
 
   useEffect(() => {
-    onReady(value);
+    const clear = onReady(value);
+
+    return () => clear();
   }, [value]);
 
   const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
