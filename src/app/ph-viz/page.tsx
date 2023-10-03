@@ -13,6 +13,15 @@ function onReady(value: number) {
   document.querySelector('body')!.appendChild(canvas);
   canvas.style.position = 'absolute';
 
+  if (value <= 9.2) {
+    context!.fillStyle = 'rgba(73, 156, 198, 1)';
+    context.fillRect(0, 0, width, height);
+
+    return () => {
+      context.clearRect(0, 0, width, height);
+    };
+  }
+
   interface IParticle {
     x: number;
     y: number;
@@ -115,10 +124,10 @@ export default function PHViz() {
   const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.valueAsNumber;
 
-    if (value > 9.5) {
+    if (value > 9.2) {
       setValue(event.target.valueAsNumber);
     } else {
-      setValue(9.5);
+      setValue(9.2);
     }
 
   }, []);
